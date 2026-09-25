@@ -1,0 +1,9 @@
+Package: com.neyuh.lastfmscrobbler
+Name: LastFMScrobbler
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: A system-wide Last.fm scrobbler for jailbroken iOS
+Maintainer: neyuh <neyuh@example.com>
+Author: neyuh
+Section: Tweaks
+Depends: mobilesubstrate, preferenceloader
