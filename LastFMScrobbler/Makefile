@@ -1,5 +1,5 @@
 ARCHS = arm64
-TARGET = iphone:clang:15.0:18.0
+TARGET = iphone:clang:16.5
 FINALPACKAGE = 1
 THEOS_PACKAGE_SCHEME = rootless
 
