@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>StringsTable</key>
+    <string>LastFMScrobblerPrefs</string>
+    <key>PreferenceSpecifiers</key>
+    <array>
+        <!-- General Section -->
+        <dict>
+            <key>Title</key>
+            <string>General</string>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>enabled</string>
+            <key>Title</key>
+            <string>Enable Scrobbling</string>
+            <key>Type</key>
+            <string>PSSwitchSpecifier</string>
+            <key>DefaultValue</key>
+            <false/>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>scrobbleCurrentOnStartup</string>
+            <key>Title</key>
+            <string>Scrobble currently playing track on startup</string>
+            <key>Type</key>
+            <string>PSSwitchSpecifier</string>
+            <key>DefaultValue</key>
+            <false/>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>cleanMetadata</string>
+            <key>Title</key>
+            <string>Clean metadata</string>
+            <key>Type</key>
+            <string>PSSwitchSpecifier</string>
+            <key>DefaultValue</key>
+            <true/>
+        </dict>
+
+        <!-- Auth Section -->
+        <dict>
+            <key>Title</key>
+            <string>Authentication</string>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>apiKey</string>
+            <key>Title</key>
+            <string>API Key</string>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+            <key>Placeholder</key>
+            <string>Enter API key</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>apiSecret</string>
+            <key>Title</key>
+            <string>API Secret</string>
+            <key>Type</key>
+            <string>PSSecureTextFieldSpecifier</string>
+            <key>Placeholder</key>
+            <string>Enter API secret</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>username</string>
+            <key>Title</key>
+            <string>Username</string>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+            <key>Placeholder</key>
+            <string>Last.fm username</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>password</string>
+            <key>Title</key>
+            <string>Password</string>
+            <key>Type</key>
+            <string>PSSecureTextFieldSpecifier</string>
+            <key>Placeholder</key>
+            <string>Last.fm password</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>loggedIn</string>
+            <key>Title</key>
+            <string>Logged In</string>
+            <key>Type</key>
+            <string>PSButtonSpecifier</string>
+        </dict>
+
+        <!-- Scrobble Section -->
+        <dict>
+            <key>Title</key>
+            <string>Scrobble Settings</string>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>scrobblePercentage</string>
+            <key>Title</key>
+            <string>Scrobble after (%)</string>
+            <key>Type</key>
+            <string>PSSliderSpecifier</string>
+            <key>MinimumValue</key>
+            <string>50</string>
+            <key>MaximumValue</key>
+            <string>100</string>
+            <key>DefaultValue</key>
+            <string>70</string>
+        </dict>
+
+        <!-- Apps Section -->
+        <dict>
+            <key>Title</key>
+            <string>App Filtering</string>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>filterMode</string>
+            <key>Title</key>
+            <string>Filter Mode</string>
+            <key>Type</key>
+            <string>PSMultiValueSpecifier</string>
+            <key>DefaultValue</key>
+            <string>0</string>
+            <key>Titles</key>
+            <array>
+                <string>All apps</string>
+                <string>Allow list</string>
+                <string>Block list</string>
+            </array>
+            <key>Values</key>
+            <array>
+                <integer>0</integer>
+                <integer>1</integer>
+                <integer>2</integer>
+            </array>
+        </dict>
+
+        <!-- Debug Section -->
+        <dict>
+            <key>Title</key>
+            <string>Debug</string>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>debugLogging</string>
+            <key>Title</key>
+            <string>Enable debug logging</string>
+            <key>Type</key>
+            <string>PSSwitchSpecifier</string>
+            <key>DefaultValue</key>
+            <false/>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>clearQueue</string>
+            <key>Title</key>
+            <string>Clear cached queue</string>
+            <key>Type</key>
+            <string>PSButtonSpecifier</string>
+        </dict>
+        <dict>
+            <key>Key</key>
+            <string>clearCredentials</string>
+            <key>Title</key>
+            <string>Clear credentials</string>
+            <key>Type</key>
+            <string>PSButtonSpecifier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
