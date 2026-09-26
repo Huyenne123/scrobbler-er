@@ -10,7 +10,7 @@ lastfmscrobblerd_FILES = src/main.m src/LFMScrobbler.m src/MediaRemoteManager.m 
 lastfmscrobblerd_FRAMEWORKS = UIKit Foundation
 lastfmscrobblerd_PRIVATE_FRAMEWORKS = MediaRemote
 lastfmscrobblerd_LDFLAGS = -lz
-lastfmscrobblerd_CFLAGS = -Wno-deprecated-declarations
+lastfmscrobblerd_CFLAGS = -fobjc-arc -Wno-deprecated-declarations
 
 include $(THEOS_MAKE_PATH)/tool.mk
 

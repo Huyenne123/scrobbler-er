@@ -108,7 +108,7 @@ static CFStringRef kMRMediaRemoteNowPlayingInfoPlaybackStartDate = NULL;
     CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
                                     NULL,
                                     (CFNotificationCallback)nowPlayingInfoDidChange,
-                                    CFSTR(kMRMediaRemoteNowPlayingInfoDidChangeNotification),
+                                    CFSTR("kMRMediaRemoteNowPlayingInfoDidChangeNotification"),
                                     NULL,
                                     CFNotificationSuspensionBehaviorDeliverImmediately);
 }
@@ -160,15 +160,15 @@ static void nowPlayingInfoDidChange(CFNotificationCenterRef center, void *observ
         }
 
         // Extract the relevant information using our keys
-        NSString *title = info ? (__bridge_transfer NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoTitle) : nil;
-        NSString *artist = info ? (__bridge_transfer NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoArtist) : nil;
-        NSString *album = info ? (__bridge_transfer NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoAlbum) : nil;
-        NSString *albumArtist = info ? (__bridge_transfer NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoAlbumArtist) : nil;
-        NSString *trackID = info ? (__bridge_transfer NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoTrackIdentifier) : nil;
+        NSString *title = info ? (__bridge NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoTitle) : nil;
+        NSString *artist = info ? (__bridge NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoArtist) : nil;
+        NSString *album = info ? (__bridge NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoAlbum) : nil;
+        NSString *albumArtist = info ? (__bridge NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoAlbumArtist) : nil;
+        NSString *trackID = info ? (__bridge NSString *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoTrackIdentifier) : nil;
         // Note: ArtworkURL is not MBID, we leave MBID as nil
         NSString *mbid = nil;
-        NSNumber *duration = info ? (__bridge_transfer NSNumber *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoPlaybackDuration) : nil;
-        NSDate *startDate = info ? (__bridge_transfer NSDate *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoPlaybackStartDate) : nil;
+        NSNumber *duration = info ? (__bridge NSNumber *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoPlaybackDuration) : nil;
+        NSDate *startDate = info ? (__bridge NSDate *)CFDictionaryGetValue(info, kMRMediaRemoteNowPlayingInfoPlaybackStartDate) : nil;
         // Get the bundle identifier if possible - we don't have a key for that in the standard info
         NSString *bundleIdentifier = nil;
 
