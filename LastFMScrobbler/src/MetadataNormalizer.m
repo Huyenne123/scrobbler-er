@@ -119,8 +119,7 @@
 
 - (void)normalizePunctuation:(NSMutableString *)string {
     // Trim whitespace and punctuation from the ends
-    NSCharacterSet *whitespaceAndPunctuation = [NSCharacterSet characterSetWithCharactersInString:@"
-"];
+    NSCharacterSet *whitespaceAndPunctuation = [NSCharacterSet characterSetWithCharactersInString:@" \n\t\r"];
     NSRange range = [string rangeOfCharacterFromSet:whitespaceAndPunctuation options:NSBackwardsSearch];
     if (range.location != NSNotFound) {
         [string deleteCharactersInRange:NSMakeRange(range.location, string.length - range.location)];

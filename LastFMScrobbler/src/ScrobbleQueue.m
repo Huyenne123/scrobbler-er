@@ -1,6 +1,7 @@
 #import "ScrobbleQueue.h"
 #import "LFMTrack.h"
 #import "LFMScrobbler.h"
+#import "LastFMClient.h"
 #import <sys/stat.h>
 
 static NSString *const kRecentScrobblesKey = @"RecentScrobbles";
@@ -117,12 +118,13 @@ static NSUInteger const kMaxRecentScrobbles = 50;
 }
 
 - (NSArray *)getAndClearQueuedScrobbles {
+    __block NSArray *copy = nil;
     dispatch_sync(_queueSerialQueue, ^{
-        NSArray *copy = [_queue copy];
+        copy = [_queue copy];
         [_queue removeAllObjects];
         [self saveQueue];
-        return copy;
     });
+    return copy;
 }
 
 - (void)queueScrobbles:(NSArray *)tracks {
@@ -144,6 +146,12 @@ static NSUInteger const kMaxRecentScrobbles = 50;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         LFMScrobbler *scrobbler = [LFMScrobbler sharedScrobbler];
         LastFMClient *client = scrobbler.lastFMClient;
+
+        if (!client) {
+            // If no client yet, re-queue and return
+            [self queueScrobbles:tracksToSend];
+            return;
+        }
 
         NSMutableArray *failedTracks = [NSMutableArray array];
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
@@ -168,7 +176,7 @@ static NSUInteger const kMaxRecentScrobbles = 50;
             [self queueScrobbles:failedTracks];
         }
 
-        dispatch_semaphore_release(semaphore);
+        // Note: dispatch_semaphore_release is not needed in ARC
     });
 }
 
@@ -190,7 +198,7 @@ static NSUInteger const kMaxRecentScrobbles = 50;
 
 - (BOOL)isRecentlyScrobbled:(LFMTrack *)track {
     if (!track) return NO;
-    BOOL result = NO;
+    __block BOOL result = NO;
     dispatch_sync(_queueSerialQueue, ^{
         for (LFMTrack *recentTrack in _recentScrobbles) {
             // Compare the essential parts: artist, title, album, and startDate (or timestamp?)
