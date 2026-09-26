@@ -26,16 +26,4 @@
     return self;
 }
 
-- (void)dealloc {
-    [_title release];
-    [_artist release];
-    [_album release];
-    [_albumArtist release];
-    [_trackID release];
-    [_mbid release];
-    [_startDate release];
-    [_bundleIdentifier release];
-    [super dealloc];
-}
-
 @end
