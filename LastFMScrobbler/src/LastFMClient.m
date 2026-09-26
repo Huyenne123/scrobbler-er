@@ -1,4 +1,5 @@
 #import "LastFMClient.h"
+#import "LFMTrack.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <Foundation/Foundation.h>
 
@@ -89,22 +90,13 @@ static NSString *const kLastFM_APIEndpoint = @"https://ws.audioscrobbler.com/2.0
     if (track.album) {
         params[@"album"] = track.album;
     }
-    if (track.timestamp) {
-        // We don't have a timestamp in LFMTrack, but we can use the current time or the startDate?
-        // The scrobble requires a timestamp (Unix timestamp of when the track started).
-        // We have startDate in LFMTrack, so we can use that.
-        // If we don't have startDate, we can use the current time? But that's not accurate.
-        // We'll use the startDate if available, otherwise we'll omit and let Last.fm use the current time?
-        // According to the API, timestamp is optional but recommended.
-        // We'll convert startDate to Unix timestamp.
-        if (track.startDate) {
-            params[@"timestamp"] = @(track.startDate.timeIntervalSince1970);
-        }
+    if (track.startDate) {
+        params[@"timestamp"] = @((long)[track.startDate timeIntervalSince1970]);
     }
     // Note: We don't send albumArtist, mbid, etc. in scrobble? The API allows them but we don't have them.
 
     [self sendAuthenticatedRequestWithParameters:params completion:^(NSDictionary *response, NSError *error) {
-        BOOL success = !error && [response[@"scrobbles"][@"scrobble"][@"[@"accepted"][@"#text"] intValue] > 0];
+        BOOL success = !error && [response[@"scrobbles"][@"@attr"][@"accepted"] intValue] > 0;
         if (completion) {
             completion(success, error);
         }

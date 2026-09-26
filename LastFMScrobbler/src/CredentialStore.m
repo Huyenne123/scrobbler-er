@@ -15,6 +15,12 @@ static NSString *const kServiceIdentifier = @"com.neyuh.lastfmscrobbler";
 
 @implementation CredentialStore
 
+@synthesize apiKey = _apiKey;
+@synthesize username = _username;
+@synthesize password = _password;
+@synthesize apiSecret = _apiSecret;
+@synthesize sessionKey = _sessionKey;
+
 + (instancetype)sharedStore {
     static CredentialStore *sharedInstance = nil;
     static dispatch_once_t onceToken;
@@ -60,10 +66,10 @@ static NSString *const kServiceIdentifier = @"com.neyuh.lastfmscrobbler";
     [searchDictionary setObject:(__bridge id)kCFBooleanTrue forKey:(__bridge id)kSecReturnData];
     [searchDictionary setObject:(__bridge id)kSecMatchLimitOne forKey:(__bridge id)kSecMatchLimit];
 
-    NSData *result = NULL;
-    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)searchDictionary, (CFTypeRef *)&result);
+    CFTypeRef result = NULL;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)searchDictionary, &result);
     if (status == noErr) {
-        return result;
+        return (__bridge_transfer NSData *)result;
     }
     return nil;
 }
