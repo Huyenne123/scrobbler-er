@@ -125,7 +125,7 @@ static NSString *const kLastFM_APIEndpoint = @"https://ws.audioscrobbler.com/2.0
 
 - (NSString *)apiSignatureForParameters:(NSDictionary *)parameters {
     // Create an array of the keys and sort them
-    NSArray *sortedKeys = [parameters.keys sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *sortedKeys = [parameters.allKeys sortedArrayUsingSelector:@selector(compare:)];
     NSMutableString *stringToSign = [NSMutableString string];
     for (NSString *key in sortedKeys) {
         [stringToSign appendFormat:@"%@%@", key, parameters[key]];
@@ -153,7 +153,7 @@ static NSString *const kLastFM_APIEndpoint = @"https://ws.audioscrobbler.com/2.0
 
     // Build the HTTP body
     NSMutableString *bodyString = [NSMutableString string];
-    NSArray *sortedKeys = [parameters.keys sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *sortedKeys = [parameters.allKeys sortedArrayUsingSelector:@selector(compare:)];
     for (NSString *key in sortedKeys) {
         if ([bodyString length] > 0) {
             [bodyString appendString:@"&"];
