@@ -4,8 +4,8 @@ LastFMScrobblerPrefs_INSTALL_PATH = /Library/PreferenceBundles
 LastFMScrobblerPrefs_FRAMEWORKS = UIKit
 LastFMScrobblerPrefs_PRIVATE_FRAMEWORKS = Preferences
 
-# Include the plist files as resources so they get copied to the bundle
-LastFMScrobblerPrefs_RESOURCES = LastFMScrobblerPrefs.plist entry.plist
+# Include the preference specifiers as a bundle resource
+LastFMScrobblerPrefs_RESOURCE_FILES = LastFMScrobblerPrefs.plist
 
 include $(THEOS)/makefiles/common.mk
 include $(THEOS_MAKE_PATH)/bundle.mk
