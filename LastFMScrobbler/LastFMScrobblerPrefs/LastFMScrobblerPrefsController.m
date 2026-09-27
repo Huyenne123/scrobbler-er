@@ -1,13 +1,14 @@
 #import <Preferences/Preferences.h>
 
 @interface LastFMScrobblerPrefsController : PSListController
+@property (nonatomic, strong) NSArray *specifiers;
 @end
 
 @implementation LastFMScrobblerPrefsController
 
-- (id)specifiers {
+- (NSArray *)specifiers {
     if (!_specifiers) {
-        _specifiers = [self loadSpecifiersFromPlistName:@"LastFMScrobblerPrefs" target:self];
+        _specifiers = [[self loadSpecifiersFromPlistName:@"LastFMScrobblerPrefs" target:self] retain];
     }
     return _specifiers;
 }
