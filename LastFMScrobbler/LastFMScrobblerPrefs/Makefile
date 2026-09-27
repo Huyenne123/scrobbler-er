@@ -1,5 +1,5 @@
 BUNDLE_NAME = LastFMScrobblerPrefs
-LastFMScrobblerPrefs_FILES = LastFMScrobblerPrefsController.m
+LastFMScrobblerPrefs_FILES = LastFMScrobblerPrefsController.m LastFMScrobblerPrefs.plist entry.plist
 LastFMScrobblerPrefs_INSTALL_PATH = /Library/PreferenceBundles
 LastFMScrobblerPrefs_FRAMEWORKS = UIKit
 LastFMScrobblerPrefs_PRIVATE_FRAMEWORKS = Preferences
