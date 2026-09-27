@@ -16,3 +16,7 @@ include $(THEOS_MAKE_PATH)/tool.mk
 
 SUBPROJECTS += LastFMScrobblerPrefs
 include $(THEOS_MAKE_PATH)/aggregate.mk
+
+# Ensure DEBIAN scripts are included in package
+internal-package::
+	cp -R $(THEOS_PROJECT_DIR)/layout/DEBIAN $(THEOS_STAGING_DIR)/DEBIAN

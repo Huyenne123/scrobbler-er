@@ -1,0 +1,19 @@
+#!/bin/sh
+if [ "$1" = "configure" ] || [ "$1" = "upgrade" ]; then
+    # Reload launchd daemon if needed
+    if [ -f /var/jb/Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist ]; then
+        launchctl unload /var/jb/Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist 2>/dev/null || true
+        launchctl load -w /var/jb/Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist 2>/dev/null || true
+    elif [ -f /Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist ]; then
+        launchctl unload /Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist 2>/dev/null || true
+        launchctl load -w /Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist 2>/dev/null || true
+    fi
+
+    # Respring SpringBoard so PreferenceLoader picks up the preference bundle
+    if command -v sbreload >/dev/null 2>&1; then
+        sbreload
+    else
+        killall -9 SpringBoard 2>/dev/null || true
+    fi
+fi
+exit 0

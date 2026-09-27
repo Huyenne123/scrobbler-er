@@ -1,0 +1,17 @@
+#!/bin/sh
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+    # Unload launchd daemon
+    if [ -f /var/jb/Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist ]; then
+        launchctl unload -w /var/jb/Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist 2>/dev/null || true
+    elif [ -f /Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist ]; then
+        launchctl unload -w /Library/LaunchDaemons/com.neyuh.lastfmscrobbler.plist 2>/dev/null || true
+    fi
+
+    # Respring SpringBoard
+    if command -v sbreload >/dev/null 2>&1; then
+        sbreload
+    else
+        killall -9 SpringBoard 2>/dev/null || true
+    fi
+fi
+exit 0
